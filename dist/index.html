@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="TikTok-style captions with smart rounded backgrounds, width snapping, color presets and glyph outlines. Live playground and measured reference comparisons."><title>TikTok Wrapped Text — TikTok text in one tag</title><link rel="stylesheet" href="./styles.css"><script type="module" src="./app.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a><header class="header"><a class="brand" href="#overview"><svg width="29" height="30" viewBox="0 0 29 30" aria-hidden="true"><path fill="currentColor" d="M5 3h19q4 0 4 4v8q0 4-4 4h-7q-3 0-3 3v1q0 4-4 4H5q-4 0-4-4V7q0-4 4-4Z"/><path stroke="white" stroke-width="2.4" stroke-linecap="round" d="M7 10h15M7 15h10M7 21h2"/></svg><span class="brand-name">TikTok Wrapped Text</span><span class="version">v0.2.0</span></a><nav class="toplinks" aria-label="Main"><a class="selected" href="#overview">Documentation</a><a href="./verification/">Reference verification</a><a href="./lib/roundtext.js" download>Source ↗</a></nav><a class="download" href="./roundtext-0.2.0.zip" download>↓ Download library</a></header>
+<div class="layout"><aside class="sidebar" aria-label="Documentation navigation"><div class="navgroup"><span class="navheading">GETTING STARTED</span><a class="active" aria-current="location" href="#overview">Introduction</a><a href="#playground">Playground</a></div><div class="navgroup"><span class="navheading">LIVE DEMOS</span><a href="#variants">Styles & variants</a><a href="#colors">Color presets</a><a href="#sizes">Multiple sizes</a><a href="#snapping">Smart width snapping</a><a href="#alignment">Alignment</a></div><div class="navgroup"><span class="navheading">DOCUMENTATION</span><a href="#references">Show your work</a><a href="#installation">Installation</a><a href="#styling">API reference</a><a href="#frameworks">React & Tailwind</a><a href="#limitations">Support & limitations</a><a href="./verification/">All six references ↗</a></div><div class="sidebar-note"><span class="smallmark">{ }</span><strong>One import. One tag.</strong><p>Font, padding, corners,<br>and snapping included.</p><a href="./verification/">Inspect the overlays ↗</a></div><div class="sidefoot">MIT code · OFL font</div></aside>
+<main id="main"><section id="overview" class="intro"><div class="eyebrow">DOCUMENTATION <span>/</span> INTRODUCTION</div><h1>TikTok text. One tag<span>.</span></h1><p class="lead">Connected backgrounds, intelligent width snapping, and rounded<br class="desktop"> text outlines. The small details, built into the defaults.</p><div class="badges"><span><i></i> TikTok Sans included</span><span>No runtime dependencies</span><span>Native HTML text</span></div></section>
+<section id="playground"><div class="section-heading"><h2>Make it yours</h2><span class="live"><i></i> Live playground</span></div><div class="playground"><div class="preview-area" id="preview-area"><div class="preview-top"><span>PREVIEW</span><label class="inspect"><input type="checkbox" id="inspect"> Inspect geometry</label></div><div class="stage" id="stage"><div id="caption-wrap"><tiktok-text id="caption" size="40">This is
+multiline text
+that
+wraps</tiktok-text></div></div><div class="preview-bottom"><span><span id="line-count">4</span> lines <span class="dot">·</span> <span id="actual-width">460</span>px wide</span><button class="text-button" id="reset">↺ Reset</button></div></div><form class="controls" onsubmit="return false"><label class="field-label" for="text">Your text</label><textarea id="text" rows="4" spellcheck="false">This is
+multiline text
+that
+wraps</textarea><div class="fieldrow"><label for="variant">Style</label><select id="variant"><option value="box">Background</option><option value="plain">Plain text</option><option value="outline">Outlined</option><option value="hollow">Hollow</option></select></div><div class="fieldrow"><label for="preset">Color</label><select id="preset"><option value="black">Black</option><option value="white">White</option><option value="red">Red</option><option value="orange">Orange</option><option value="yellow">Yellow</option><option value="green">Green</option><option value="teal">Teal</option><option value="cyan">Cyan</option><option value="blue">Blue</option><option value="indigo">Indigo</option><option value="purple">Purple</option></select></div><div class="fieldrow"><span>Alignment</span><div class="segmented" role="group" aria-label="Text alignment"><button type="button" data-align="left" aria-label="Align left" aria-pressed="false">≡</button><button type="button" data-align="center" class="active" aria-label="Align center" aria-pressed="true">≡</button><button type="button" data-align="right" aria-label="Align right" aria-pressed="false">≡</button></div></div><div class="rangefield"><label for="size">Font size <output id="size-value">40px</output></label><input type="range" id="size" min="16" max="80" value="40"></div><div class="rangefield"><label for="width">Text width <output id="width-value">460px</output></label><input type="range" id="width" min="160" max="600" value="460"></div><label class="snap-toggle"><input type="checkbox" id="snap" checked> Smart width snapping</label><details class="advanced"><summary>Custom geometry</summary><p>Automatic values scale with your font.</p><label for="radius">Radius (px)<input type="number" id="radius" min="0" max="60" placeholder="Auto"></label><label for="px">Padding X (px)<input type="number" id="px" min="0" max="60" placeholder="Auto"></label><label for="py">Padding Y (px)<input type="number" id="py" min="0" max="40" placeholder="Auto"></label></details></form></div><div class="code-panel"><div class="codebar"><div role="tablist" aria-label="Code language"><button role="tab" aria-selected="true" class="active" data-tab="html" id="tab-html" aria-controls="live-code">HTML</button><button role="tab" aria-selected="false" data-tab="css" id="tab-css" tabindex="-1" aria-controls="live-code">CSS</button><button role="tab" aria-selected="false" data-tab="react" id="tab-react" tabindex="-1" aria-controls="live-code">React</button></div><button class="copy" data-copy="live-code">▢ <span>Copy code</span></button></div><pre id="live-code" role="tabpanel" aria-labelledby="tab-html" tabindex="0"></pre></div><p class="hint">Change the size. Padding, corner radius, and stroke thickness follow automatically.</p></section>
+<section id="variants" class="doc-section feature-section">
+<div class="eyebrow">THE LIBRARY IN ACTION</div><h2>One caption. Four ways to say it.</h2>
+<p>Keep the text. Change the treatment. These are live library components, not screenshots.</p>
+<div class="variant-grid">
+<article class="feature-card"><div class="demo-surface surface-light"><tiktok-text size="36" color="black" variant="box">Find your
+happy place.</tiktok-text></div><div class="feature-caption"><h3>Connected background</h3><p>A single shape, with rounded steps.</p><code>variant="box"</code></div></article>
+<article class="feature-card"><div class="demo-surface surface-navy"><tiktok-text size="36" color="white" variant="plain">Find your
+happy place.</tiktok-text></div><div class="feature-caption"><h3>Plain text</h3><p>Just the type. No background or stroke.</p><code>variant="plain"</code></div></article>
+<article class="feature-card"><div class="demo-surface surface-peach"><tiktok-text size="36" color="orange" variant="outline">Find your
+happy place.</tiktok-text></div><div class="feature-caption"><h3>Rounded outline</h3><p>Filled letters with a contrasting edge.</p><code>variant="outline"</code></div></article>
+<article class="feature-card"><div class="demo-surface surface-purple"><tiktok-text size="36" color="white" variant="hollow">Find your
+happy place.</tiktok-text></div><div class="feature-caption"><h3>Hollow letters</h3><p>The background shows through the type.</p><code>variant="hollow"</code></div></article>
+</div>
+<details class="demo-code"><summary>Show the HTML for all four styles</summary><div class="code-panel"><div class="codebar"><span>Four variants</span><button class="copy" data-copy="variant-code">▢ <span>Copy code</span></button></div><pre id="variant-code">&lt;!-- Import once. Use a dark surface for white plain and hollow text. --&gt;
+&lt;script type="module" src="./roundtext/roundtext.js"&gt;&lt;/script&gt;
+
+&lt;tiktok-text size="36" color="black" variant="box"&gt;Find your&lt;br&gt;happy place.&lt;/tiktok-text&gt;
+&lt;tiktok-text size="36" color="white" variant="plain"&gt;Find your&lt;br&gt;happy place.&lt;/tiktok-text&gt;
+&lt;tiktok-text size="36" color="orange" variant="outline"&gt;Find your&lt;br&gt;happy place.&lt;/tiktok-text&gt;
+&lt;tiktok-text size="36" color="white" variant="hollow"&gt;Find your&lt;br&gt;happy place.&lt;/tiktok-text&gt;</pre></div></details>
+</section>
+<section id="colors" class="doc-section feature-section">
+<div class="eyebrow">COLOR PRESETS</div><h2>Pick a color. The pair comes with it.</h2>
+<p>Eleven presets include their own background, text, and outline colors. White gets black lettering; yellow gets brown. You can also supply a custom CSS color.</p>
+<div class="palette-grid">
+<div class="palette-tile"><tiktok-text size="25" color="black">Make it
+yours.</tiktok-text><code>color="black"</code></div>
+<div class="palette-tile palette-dark"><tiktok-text size="25" color="white">Make it
+yours.</tiktok-text><code>color="white"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="red">Make it
+yours.</tiktok-text><code>color="red"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="orange">Make it
+yours.</tiktok-text><code>color="orange"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="yellow">Make it
+yours.</tiktok-text><code>color="yellow"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="green">Make it
+yours.</tiktok-text><code>color="green"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="teal">Make it
+yours.</tiktok-text><code>color="teal"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="cyan">Make it
+yours.</tiktok-text><code>color="cyan"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="blue">Make it
+yours.</tiktok-text><code>color="blue"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="indigo">Make it
+yours.</tiktok-text><code>color="indigo"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="purple">Make it
+yours.</tiktok-text><code>color="purple"</code></div>
+<div class="palette-tile"><tiktok-text size="25" color="#be185d">Make it
+yours.</tiktok-text><code>color="#be185d"</code></div>
+</div>
+<div class="contrast-note"><strong>Match the style to the surface.</strong><p>Light plain text and light strokes need a dark backdrop. These box presets preserve the reference palette, not a blanket accessibility guarantee. For smaller captions, use a high-contrast pair or override <code>--rt-color</code>.</p></div>
+</section>
+<section id="sizes" class="doc-section feature-section">
+<div class="eyebrow">SIZES THAT SCALE</div><h2>Small label. Big statement.</h2>
+<p>Change just <code>size</code>. Padding, inner and outer corners, and snapping scale together. No separate radius to retune.</p>
+<div class="size-grid">
+<div class="size-tile"><tiktok-text size="20" color="indigo">Big
+ideas.</tiktok-text><code>size="20"</code></div>
+<div class="size-tile"><tiktok-text size="28" color="indigo">Big
+ideas.</tiktok-text><code>size="28"</code></div>
+<div class="size-tile"><tiktok-text size="40" color="indigo">Big
+ideas.</tiktok-text><code>size="40"</code></div>
+<div class="size-tile"><tiktok-text size="56" color="indigo">Big
+ideas.</tiktok-text><code>size="56"</code></div>
+</div></section>
+<section id="snapping" class="doc-section feature-section"><div class="eyebrow">INTELLIGENT SNAPPING</div><h2>Near widths become one block.</h2><p>Small differences don’t need a step. Neighboring edges snap together into one clean block. Larger differences keep their rounded silhouette.</p>
+<div class="comparison snapping-demo">
+<div><span class="compare-label">SNAPPING OFF</span><tiktok-text size="34" snap="off">less
+noise
+more
+focus</tiktok-text><div><code>snap="off"</code><p>Every line keeps its own width.</p></div></div>
+<div class="connected"><span class="compare-label">SMART SNAPPING ON</span><tiktok-text size="34" snap="on">less
+noise
+more
+focus</tiktok-text><div><code>snap="on"</code><p>Similar widths form a straight block.</p></div></div>
+</div>
+<div class="step-demo"><div><h3>Big changes still get a step.</h3><p>Snapping smooths nearby widths; it doesn’t turn every caption into a rectangle.</p></div><tiktok-text size="32" color="teal">Take the
+scenic route.</tiktok-text></div>
+</section>
+<section id="alignment" class="doc-section feature-section"><div class="eyebrow">LAYOUT</div><h2>Let the caption follow the composition.</h2><p>Align the same text to either edge or the center. Backgrounds still follow the individual lines.</p><div class="alignment-grid">
+<div><tiktok-text size="25" color="black" align="left">A little
+change of scene.</tiktok-text><code>align="left"</code></div>
+<div><tiktok-text size="25" color="black" align="center">A little
+change of scene.</tiktok-text><code>align="center"</code></div>
+<div><tiktok-text size="25" color="black" align="right">A little
+change of scene.</tiktok-text><code>align="right"</code></div>
+</div></section>
+<details id="how-it-works" class="demo-code geometry-notes"><summary>Under the hood: measuring, snapping, and rounding</summary><ol class="steps"><li><strong>Measure the browser’s text</strong><p>Native DOM ranges supply the actual line breaks and positions. Your text remains selectable and accessible.</p></li><li><strong>Snap before drawing</strong><p>Nearby edges are grouped using their original widths. Groups expand to the widest edge, including transitive groups across several lines.</p></li><li><strong>Round the complete silhouette</strong><p>Overlapping line bands form a union. Every outer and inner turn receives a circular corner. Glyph outlines use SVG strokes with round joins.</p></li></ol></details>
+<section id="references" class="doc-section"><div class="eyebrow">SHOW YOUR WORK</div><h2>Six references. Every difference visible.</h2><p>The demos above show what you can make. These reference tests show how closely the library reproduces the supplied TikTok screenshots. Compare live HTML, overlay the original, inspect pixel differences, and copy the recreation code.</p><a class="verification-card" href="./verification/"><img src="./verification/overlay-contact-sheet.png" alt="Overlays of all six recreated TikTok reference images" width="1122" height="980"><span><strong>Open reference verification</strong><span>Original · Recreation · Overlay · Difference ↗</span></span></a><p class="hint">The comparisons are close, but not pixel-identical. Background overlap and foreground error are reported separately.</p></section>
+<section id="installation" class="doc-section"><div class="eyebrow">GETTING STARTED</div><h2>Copy the folder. Use the tag.</h2><p>Download and place the <code>roundtext</code> folder in your project. Import once. The library loads the included font and handles geometry for you.</p><div class="code-panel"><div class="codebar"><span>index.html</span><button class="copy" data-copy="install-code">▢ <span>Copy code</span></button></div><pre id="install-code">&lt;script type="module" src="./roundtext/roundtext.js"&gt;&lt;/script&gt;
+
+&lt;tiktok-text&gt;This is
+multiline text
+that
+wraps&lt;/tiktok-text&gt;</pre></div><div class="callout"><span aria-hidden="true">i</span><p><strong>Keep the fonts folder beside the module.</strong> The download contains the library, font and license, TypeScript types, a React wrapper, all six HTML recreations, and the verification measurements. Serve over HTTP(S); no build step is needed for HTML.</p></div></section>
+<section id="styling" class="doc-section"><div class="eyebrow">API</div><h2>Four useful attributes.</h2><div class="table-wrap"><table><thead><tr><th>Attribute</th><th>Default</th><th>Values</th></tr></thead><tbody><tr><td><code>size</code></td><td>40</td><td>Font size in pixels; geometry scales with it</td></tr><tr><td><code>color</code></td><td>black</td><td>11 named presets, or a CSS color</td></tr><tr><td><code>variant</code></td><td>box</td><td>box, plain, outline, hollow</td></tr><tr><td><code>align</code></td><td>center</td><td>left, center, right, start, end</td></tr></tbody></table></div><p><code>snap="off"</code> disables width snapping. <code>debug</code> shows the line bands. Newlines and <code>&lt;br&gt;</code> work; blank lines remain separate.</p><details class="method-details"><summary>Advanced CSS & JavaScript</summary><p>Override <code>--rt-bg</code>, <code>--rt-color</code>, <code>--rt-outline</code>, <code>--rt-radius</code>, <code>--rt-stroke</code>, <code>--rt-px</code>, <code>--rt-py</code>, or <code>--rt-snap</code>. Radius, stroke, and snap accept px or em. Use a wrapper for layout padding and borders.</p><p><code>await ready()</code> waits for the included font; then call <code>element.refresh()</code> before capturing. Resizes, text edits, and font loads trigger automatic updates. Call <code>refresh()</code> after external stylesheet changes that do not resize the element.</p><p>The <code>roundtext:render</code> event exposes <code>lines</code>, <code>path</code>, <code>rectangles</code>, and <code>unsnapped</code>. The old <code>&lt;round-text&gt;</code> tag remains available with the updated defaults.</p></details></section>
+<section id="frameworks" class="doc-section"><div class="eyebrow">INTEGRATIONS</div><h2>Just as simple in React.</h2><div class="code-panel"><div class="codebar"><span>React + Tailwind</span><button class="copy" data-copy="react-code">▢ <span>Copy code</span></button></div><pre id="react-code">import { TikTokText } from './roundtext/ReactRoundText';
+
+&lt;TikTokText size={48} color="blue" className="max-w-md"&gt;
+  {'This is\nmultiline text'}
+&lt;/TikTokText&gt;</pre></div><p>The wrapper handles client registration and forwards a ref. Set width and layout with CSS or Tailwind. The included font and geometry already have defaults.</p></section>
+<section id="limitations" class="doc-section"><h2>What is verified—and what remains.</h2><p>All six supplied TikTok examples have been recreated in Chrome and checked with overlays and measured pixel differences. The output is not pixel-identical. Font contours, a few pixels of placement, antialiasing, and screenshot color compression account for visible differences. This is a measured reproduction of the supplied style, not TikTok’s internal renderer.</p><p>Use one font size per caption; separate captions can be any size. Horizontal text, left/center/right alignment, resizes, and multiline backgrounds are supported. Vertical writing, columns, mixed-size inline elements, rotated measurement, and complex rich-text layouts are outside this version’s scope. Glyph outlines are calibrated to the included font and left-to-right text. Safari and Firefox remain unverified.</p><p>Without JavaScript, the text stays visible. Export from a browser capture after the font has loaded. If your capture tool cannot handle Shadow DOM, use an actual browser screenshot.</p><p>The included <a class="inline-link" href="https://github.com/tiktok/TikTokSans" target="_blank" rel="noreferrer">TikTok Sans font</a> is released under the SIL Open Font License. The library’s code is MIT licensed. This library is independent of TikTok and is not published on npm.</p></section><footer>TikTok Wrapped Text <span>Small API. Inspectable geometry.</span><a href="./verification/">View verification ↗</a></footer>
+</main><aside class="onpage"><span>ON THIS PAGE</span><a href="#playground">Playground</a><a href="#variants">Variants</a><a href="#colors">Colors</a><a href="#sizes">Sizes</a><a href="#snapping">Width snapping</a><a href="#alignment">Alignment</a><a href="#references">Reference tests</a><a href="#installation">Installation</a><a href="#styling">API reference</a><a href="#frameworks">React</a></aside></div><div id="toast" role="status"></div></body></html>

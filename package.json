@@ -1,0 +1,13 @@
+{
+  "name": "tiktok-style-wrapped-text-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/geometry.test.js",
+    "dev": "vite",
+    "build:docs": "python3 scripts/build-docs.py"
+  },
+  "devDependencies": {
+    "vite": "8.2.2"
+  }
+}

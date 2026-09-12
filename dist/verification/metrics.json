@@ -1,0 +1,89 @@
+{
+  "method": "Unregistered 1080x1920 Chrome screenshots versus original JPEGs. MAE averages absolute RGB error over the union of foreground masks (>48 from background), dilated 2px, divided by 255. Shape IoU fills text holes within caption backgrounds. Basics shape excludes the plain-text row. Difference images amplify RGB differences 4x. JPEG and browser rasterization remain in the comparison.",
+  "results": [
+    {
+      "id": "basics",
+      "file": "IMG_3949.JPG",
+      "backgroundIoU": 0.9888952602923857,
+      "foregroundMAE": 0.07944237237177815,
+      "differentForegroundFraction": 0.1532614239362799,
+      "pixelIdentical": false,
+      "bounds": [
+        179,
+        496,
+        901,
+        1420
+      ]
+    },
+    {
+      "id": "snapping",
+      "file": "IMG_3950.JPG",
+      "backgroundIoU": 0.9816648052814877,
+      "foregroundMAE": 0.06892100346078579,
+      "differentForegroundFraction": 0.12911925409794978,
+      "pixelIdentical": false,
+      "bounds": [
+        48,
+        541,
+        1032,
+        1377
+      ]
+    },
+    {
+      "id": "sizes",
+      "file": "IMG_3951.JPG",
+      "backgroundIoU": 0.9789980191224869,
+      "foregroundMAE": 0.08890352347582005,
+      "differentForegroundFraction": 0.1622058463046942,
+      "pixelIdentical": false,
+      "bounds": [
+        186,
+        329,
+        894,
+        1212
+      ]
+    },
+    {
+      "id": "colors",
+      "file": "IMG_3952.JPG",
+      "backgroundIoU": 0.9793223331690075,
+      "foregroundMAE": 0.05083614120301019,
+      "differentForegroundFraction": 0.21174684396673163,
+      "pixelIdentical": false,
+      "bounds": [
+        81,
+        169,
+        1021,
+        1565
+      ]
+    },
+    {
+      "id": "outlines",
+      "file": "IMG_3953.JPG",
+      "backgroundIoU": null,
+      "foregroundMAE": 0.06713039195483624,
+      "differentForegroundFraction": 0.4117870351290088,
+      "pixelIdentical": false,
+      "bounds": [
+        236,
+        351,
+        843,
+        1142
+      ]
+    },
+    {
+      "id": "borders",
+      "file": "IMG_3954.JPG",
+      "backgroundIoU": null,
+      "foregroundMAE": 0.10541448706470907,
+      "differentForegroundFraction": 0.519506998610179,
+      "pixelIdentical": false,
+      "bounds": [
+        144,
+        450,
+        938,
+        1396
+      ]
+    }
+  ]
+}

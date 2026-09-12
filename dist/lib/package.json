@@ -1,0 +1,40 @@
+{
+  "name": "tiktok-style-wrapped-text",
+  "version": "0.2.0",
+  "description": "TikTok-style captions with connected backgrounds, width snapping and glyph outlines",
+  "type": "module",
+  "main": "./roundtext.js",
+  "types": "./roundtext.d.ts",
+  "exports": {
+    ".": {
+      "types": "./roundtext.d.ts",
+      "import": "./roundtext.js"
+    },
+    "./react": "./ReactRoundText.tsx"
+  },
+  "files": [
+    "roundtext.js",
+    "roundtext.d.ts",
+    "ReactRoundText.tsx",
+    "README.md",
+    "LICENSE",
+    "fonts/"
+  ],
+  "sideEffects": [
+    "./roundtext.js"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amargol/tiktok-style-wrapped-text.git",
+    "directory": "dist/lib"
+  }
+}

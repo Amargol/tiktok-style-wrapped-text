@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roundtext reference render</title><style>html,body{margin:0;padding:0}body{width:1080px;min-height:1920px}</style><body><script type="module">
+import {ready} from '../lib/roundtext.js';
+import {cases,createCanvas} from './cases.js';
+const test=cases.find(c=>c.id===new URLSearchParams(location.search).get('case'))||cases[0];
+document.body.append(createCanvas(test));await ready();document.querySelectorAll('tiktok-text').forEach(t=>t.refresh());document.body.dataset.ready='true';document.title=test.name+' — Reference render';
+</script></body></html>
