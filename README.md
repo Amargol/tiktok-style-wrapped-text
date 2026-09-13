@@ -326,51 +326,6 @@ The npm wrapper includes compiled JavaScript and TypeScript declarations. The TS
 
 See the [renderer source](dist/lib/roundtext.js) and [geometry tests](tests/geometry.test.js). The older `<round-text>` tag remains a compatibility alias with the same updated defaults.
 
-## Contributing
-
-<details>
-<summary>Run the docs and geometry checks locally</summary>
-
-From this repository:
-
-```sh
-npm ci
-npm run dev
-```
-
-Use the URL printed by Vite for the playground, feature demos, and reference viewer. `python3 scripts/build-docs.py` separately builds the downloadable library ZIP.
-
-```sh
-npm test
-```
-
-Run `npm ci` and `npm run build:lib` before `npm test`. The tests cover geometry and React server rendering.
-
-</details>
-
-<details>
-<summary>GitHub Pages deployment</summary>
-
-The [Deploy docs workflow](.github/workflows/pages.yml) tests the geometry, validates the docs, builds the ZIP, and publishes `dist` on every push to `main`.
-
-Enable **Settings → Pages → Build and deployment → Source → GitHub Actions**, then run **Deploy docs** from Actions. The configured address is `https://amargol.github.io/tiktok-style-wrapped-text/`. Hosting activation is separate from the library; all usage instructions are available in this README.
-
-</details>
-
-## Automatic npm releases
-
-The [Publish to npm workflow](.github/workflows/publish.yml) runs on every push to `main`. It builds the React wrapper and runs the tests, then publishes `dist/lib` if its version is not already on npm. Existing versions are skipped; registry errors stop the release. GitHub Pages continues deploying separately.
-
-For a release, update `version` in `dist/lib/package.json` to a new stable version (for example, `0.2.1`) and push to `main`. Documentation-only edits do not create package releases. Prerelease versions are excluded from this workflow. Update the displayed documentation and download versions as part of a version change.
-
-Publishing uses npm Trusted Publishing with short-lived GitHub credentials, without an npm token secret. The package must authorize repository `Amargol/tiktok-style-wrapped-text`, workflow `publish.yml`, and direct `npm publish` before its first automated release. An npm maintainer can configure that one-time relationship with:
-
-```sh
-npm trust github tiktok-style-wrapped-text --repo Amargol/tiktok-style-wrapped-text --file publish.yml --allow-publish --yes
-```
-
-The setup command may require npm's account verification. Once configured, automated releases do not require interactive verification. The workflow can also be rerun from GitHub Actions on `main` after a failed release.
-
 ## Reference comparisons and limits
 
 Six supplied TikTok screenshots have executable recreations, original/recreation overlays, and measured differences. These reference tests are separate from the purpose-built examples above.
@@ -395,3 +350,40 @@ Without JavaScript, text stays visible but connected backgrounds and outlines do
 Code: [MIT](LICENSE). Bundled TikTok Sans: [SIL Open Font License](dist/lib/fonts/OFL.txt), from [TikTok Sans](https://github.com/tiktok/TikTokSans).
 
 Independent project; not affiliated with TikTok.
+
+## Contributing
+
+Make your changes on a branch and open a pull request. To run the playground and documentation locally:
+
+```sh
+npm ci
+npm run dev
+```
+
+Before submitting, build the React wrapper, run the tests, and validate the documentation and download:
+
+```sh
+npm run build:lib
+npm test
+npm run build:docs
+```
+
+Include the generated JavaScript and TypeScript declarations when changing the React wrapper. The tests cover geometry, React server rendering, and release checks.
+
+### Automatic npm releases
+
+The [Publish to npm workflow](.github/workflows/publish.yml) runs on every push to `main`:
+
+1. Install dependencies, build the library, and run the tests.
+2. Check the version in [`dist/lib/package.json`](dist/lib/package.json) against npm.
+3. Publish the library if that version is new, or skip publishing if it already exists.
+
+To release, a maintainer updates `version` in `dist/lib/package.json` to a new stable version, such as `0.2.1`, and merges or pushes the change to `main`. Update the displayed documentation and download versions alongside the package version. The root `package.json` is the private documentation project; its version does not control npm releases.
+
+npm Trusted Publishing is already configured for this repository's `publish.yml` workflow. Releases use short-lived GitHub credentials and require no stored npm token, manual npm login, or Touch ID approval. Version bumps are intentional: documentation-only changes with an unchanged package version do not publish a new release. Prerelease versions are not supported by this workflow, and failed builds, tests, or registry lookups stop publishing.
+
+Check the result in [GitHub Actions](https://github.com/Amargol/tiktok-style-wrapped-text/actions). After resolving a failure, rerun the publishing workflow on `main`.
+
+### GitHub Pages
+
+The [Deploy docs workflow](.github/workflows/pages.yml) separately builds and tests the library, validates the documentation, generates the ZIP download, and deploys `dist` on every push to `main`. README and landing-page edits do not require an npm version bump. The live site is [TikTok Wrapped Text](https://amargol.github.io/tiktok-style-wrapped-text/).
