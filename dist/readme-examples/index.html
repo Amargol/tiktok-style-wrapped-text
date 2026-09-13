@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caption examples — TikTok Style Wrapped Text</title>
+<script type="module">
+import { ready } from '../lib/roundtext.js';
+await ready();
+document.querySelectorAll('tiktok-text').forEach(element => element.refresh());
+document.documentElement.dataset.ready = 'true';
+</script>
+<style>
+* { box-sizing: border-box; }
+html,body { margin:0; background:#fff; }
+main { width:1100px; height:620px; padding:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+section { position:relative; display:flex; align-items:center; justify-content:center; border-radius:18px; background:#f1f3f5; padding:20px 10px; }
+section:nth-child(2) { background:#182238; }
+section:nth-child(3) { background:#ffede7; }
+tiktok-text { width:100%; }
+.label { position:absolute; top:25px; left:24px; font:12px/1.4 system-ui,sans-serif; letter-spacing:1.2px; color:#657184; }
+section:nth-child(2) .label { color:#aab6cd; }
+</style>
+</head>
+<body>
+<main>
+<section id="black"><span class="label">BLACK · WRAPPED</span><tiktok-text size="40" color="black">Take the<br>scenic route.<br>Get a little<br>lost.</tiktok-text></section>
+<section id="yellow"><span class="label">YELLOW · PLAIN</span><tiktok-text size="40" color="yellow" variant="plain">A little<br>sunshine<br>goes a<br>long way.</tiktok-text></section>
+<section id="red"><span class="label">RED · WRAPPED</span><tiktok-text size="40" color="red">Good food.<br>Great company.<br>One more<br>bite.</tiktok-text></section>
+</main>
+</body>
+</html>
