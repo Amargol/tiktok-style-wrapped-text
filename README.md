@@ -10,16 +10,8 @@ Connected rounded backgrounds. Smart width snapping. TikTok Sans. One HTML tag.
 
 </div>
 
-<table>
-<tr><th>Wrapped backgrounds</th><th>Color presets</th><th>Outlined lettering</th></tr>
-<tr>
-<td><img src="dist/verification/basics.png" alt="Library-rendered plain text, a single-line black caption, and a connected multiline caption" width="280"></td>
-<td><img src="dist/verification/colors.png" alt="Library-rendered stepped captions in black, red, orange, yellow, green, teal, cyan, blue, indigo, and purple" width="280"></td>
-<td><img src="dist/verification/outlines.png" alt="Library-rendered filled and hollow glyph outlines over a pink background" width="280"></td>
-</tr>
-</table>
+![Four caption styles: connected black background, orange outline, white hollow letters, and plain white text](docs/media/showcase.svg)
 
-<p align="center"><sub>Actual library renders. Each reference recreation has <a href="dist/examples">executable HTML</a> and <a href="dist/verification">overlay comparisons</a>.</sub></p>
 
 ```html
 <script type="module" src="./roundtext/roundtext.js"></script>
@@ -54,62 +46,129 @@ Copy the repository's **`dist/lib`** directory into your own project and name th
 
 The project is not published on npm. The `roundtext` filenames are retained for compatibility; the HTML element is `<tiktok-text>`.
 
-### 2. Add it to your page
+### 2. Import once. Use the tag.
 
-Save this as `index.html` beside the copied `roundtext` directory:
+Choose the setup that matches your project. The library loads the bundled font automatically.
+
+#### Plain HTML / static sites
+
+Place the copied `roundtext` folder alongside your page, or in your site's public assets:
 
 ```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My caption</title>
-    <script type="module" src="./roundtext/roundtext.js"></script>
-  </head>
-  <body>
-    <tiktok-text size="48" color="teal">Find your<br>happy place.</tiktok-text>
-  </body>
-</html>
+<script type="module" src="./roundtext/roundtext.js"></script>
+
+<tiktok-text size="48" color="teal">Find your<br>happy place.</tiktok-text>
 ```
 
-### 3. Open it over HTTP
+Adjust the module URL to your asset location. Keep `fonts/` beside `roundtext.js` in the deployed assets. Works on static hosting, including GitHub Pages, without a framework or an HTML build step.
 
-From your project directory:
+#### Vite / JavaScript / TypeScript bundlers
 
-```sh
-python3 -m http.server 8080
+Copy the library into your source tree and import it from your browser entry point:
+
+```js
+import './roundtext/roundtext.js';
 ```
 
-Open `http://localhost:8080`. The module loads the bundled font automatically. No HTML build step is required. Use HTTP(S), rather than double-clicking the file.
+Then use `<tiktok-text>` in your templates. Your bundler must emit the included font referenced by the module's relative `new URL(...)`. Alternatively, keep the whole folder in public assets and load it with a module script as above.
+
+#### React / Next.js
+
+Use the supplied wrapper; it handles client-side registration:
+
+```tsx
+'use client'; // Needed for this component in Next.js App Router.
+
+import { TikTokText } from './roundtext/ReactRoundText';
+
+export default function Caption() {
+  return (
+    <TikTokText size={48} color="teal">
+      {'Find your\nhappy place.'}
+    </TikTokText>
+  );
+}
+```
+
+Keep the copied font assets available in your build output. [React + Tailwind](#react--tailwind) covers layout, refs, and integration status.
+
+#### Vue 3 / Nuxt
+
+Register the element on the client and use it in the template:
+
+```vue
+<script setup>
+import { onMounted } from 'vue';
+onMounted(() => { void import('./roundtext/roundtext.js'); });
+</script>
+
+<template>
+  <tiktok-text size="48" color="teal">Find your<br>happy place.</tiktok-text>
+</template>
+```
+
+Tell Vue's template compiler that `tiktok-text` is a custom element. With Vite's Vue plugin:
+
+```js
+vue({
+  template: {
+    compilerOptions: {
+      isCustomElement: tag => tag === 'tiktok-text',
+    },
+  },
+})
+```
+
+For Nuxt, set the same predicate under `vue.compilerOptions.isCustomElement` in your Nuxt configuration. The client lifecycle import avoids registration during server rendering.
+
+#### Svelte / SvelteKit
+
+```svelte
+<script>
+  import { onMount } from 'svelte';
+  onMount(() => { void import('./roundtext/roundtext.js'); });
+</script>
+
+<tiktok-text size="48" color="teal">Find your<br>happy place.</tiktok-text>
+```
+
+Framework references: [Vue custom elements](https://vuejs.org/guide/extras/web-components.html) · [Svelte client lifecycle](https://svelte.dev/docs/svelte/lifecycle-hooks).
+
+#### Other frameworks / server-rendered apps
+
+Use it as a standard custom element: load the module in the browser, allow `tiktok-text` in your framework's template compiler if required, and pass the attributes below. For SSR, register it after client mount; text can render on the server, while backgrounds and outlines are added in the browser.
+
+These are integration recipes. Chrome HTML rendering has been verified; framework-specific builds still need validation in your project. No npm install is required for the HTML runtime, and there is no published npm package yet.
 
 ## Visual examples
 
-The images above show the library's captured output. These recipes use the same renderer with shorter captions you can adapt to your own posts.
+Purpose-built caption previews with copyable recipes. The SVG illustrations use the bundled TikTok Sans font and the library’s background/snapping geometry; browser text measurement can differ slightly. [Preview source](scripts/build-readme-art.py).
 
 ### Four ways to style a caption
 
 ```html
 <!-- White text on a connected black background (the default). -->
-<tiktok-text variant="box">Find your<br>happy place.</tiktok-text>
+<tiktok-text size="62" variant="box">Take the<br>scenic route.</tiktok-text>
 
 <!-- Plain text: use a dark backdrop for white lettering. -->
 <div style="background: #172033; padding: 32px">
-  <tiktok-text color="white" variant="plain">Find your<br>happy place.</tiktok-text>
+  <tiktok-text size="48" color="white" variant="plain">Make something worth sharing.</tiktok-text>
 </div>
 
 <!-- Filled letters with a rounded, contrasting outline. -->
-<tiktok-text color="orange" variant="outline">Find your<br>happy place.</tiktok-text>
+<tiktok-text size="54" color="orange" variant="outline">Golden hour.</tiktok-text>
 
 <!-- Transparent letter interiors reveal the actual backdrop. -->
 <div style="background: linear-gradient(120deg, #4338ca, #be185d); padding: 32px">
-  <tiktok-text color="white" variant="hollow">Find your<br>happy place.</tiktok-text>
+  <tiktok-text size="53" color="white" variant="hollow">Stay curious.</tiktok-text>
 </div>
 ```
 
 `color` selects a coordinated preset, so its meaning follows the variant. For example, `color="black"` gives white lettering on black in `box` mode and black lettering in `plain` mode. White and hollow styles need a contrasting backdrop.
 
 ### Colors that work together
+
+![Eleven presets and a custom rose caption, each reading Find your happy place](docs/media/palette.svg)
 
 ```html
 <tiktok-text color="teal">Take the<br>scenic route.</tiktok-text>
@@ -133,15 +192,11 @@ Change `size`; the padding and geometry scale with it. Each caption has one size
 <tiktok-text size="56" color="indigo">Big<br>ideas.</tiktok-text>
 ```
 
-<table>
-<tr><th>Multiple sizes</th><th>Intelligent snapping</th></tr>
-<tr>
-<td align="center"><img src="dist/verification/sizes.png" alt="The same connected caption rendered at four progressively smaller sizes" width="320"></td>
-<td align="center"><img src="dist/verification/snapping.png" alt="Different-width words snapping into a straight central block while larger width changes retain rounded steps" width="320"></td>
-</tr>
-</table>
+![Big ideas captions at 20, 28, 40, and 56 pixels](docs/media/sizes.svg)
 
 ### Near widths become one block
+
+![Snapping off and on, with a stepped teal caption showing that larger width changes remain](docs/media/snapping.svg)
 
 Snapping is on by default. Similar adjacent edges align, including chains of nearby widths; large changes still produce rounded steps.
 
@@ -253,22 +308,27 @@ The wrapper is TSX source for your bundler. It registers the custom element on t
 
 See the [renderer source](dist/lib/roundtext.js) and [geometry tests](tests/geometry.test.js). The older `<round-text>` tag remains a compatibility alias with the same updated defaults.
 
-## Run the interactive docs locally
+## Contributing
+
+<details>
+<summary>Run the docs and geometry checks locally</summary>
 
 From this repository:
 
 ```sh
-python3 scripts/build-docs.py
-python3 -m http.server 8080 --directory dist
+npm ci
+npm run dev
 ```
 
-Open `http://localhost:8080` for the playground, feature demos, and reference viewer. The build script also generates the downloadable library ZIP. Alternatively, use `npm ci` and `npm run dev` for Vite.
+Use the URL printed by Vite for the playground, feature demos, and reference viewer. `python3 scripts/build-docs.py` separately builds the downloadable library ZIP.
 
 ```sh
 npm test
 ```
 
 The geometry checks require Node.js and no installed dependencies.
+
+</details>
 
 <details>
 <summary>GitHub Pages deployment</summary>
@@ -281,7 +341,7 @@ Enable **Settings → Pages → Build and deployment → Source → GitHub Actio
 
 ## Reference comparisons and limits
 
-Six supplied TikTok screenshots have executable recreations, original/recreation overlays, and measured differences. The images in this README are the **library recreations**, not the original screenshots.
+Six supplied TikTok screenshots have executable recreations, original/recreation overlays, and measured differences. These reference tests are separate from the purpose-built examples above.
 
 | Case | Recreation code | Overlay |
 | --- | --- | --- |
