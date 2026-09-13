@@ -6,6 +6,8 @@
 
 Connected rounded backgrounds. Smart width snapping. TikTok Sans. One HTML tag.
 
+**Now on npm: [tiktok-style-wrapped-text](https://www.npmjs.com/package/tiktok-style-wrapped-text) · v0.2.0**
+
 **[Quick start](#quick-start) · [Visual examples](#visual-examples) · [API](#api-reference) · [React](#react--tailwind) · [How it works](#how-it-works)**
 
 </div>
@@ -36,11 +38,13 @@ This library handles that geometry for you. Use it for short-form captions, HTML
 
 ## Quick start
 
-### 1. Get the library
+### 1. Install from npm
 
 ```sh
 npm install tiktok-style-wrapped-text
 ```
+
+Published as **[`tiktok-style-wrapped-text`](https://www.npmjs.com/package/tiktok-style-wrapped-text)**. The package includes the browser component, a compiled React wrapper, TypeScript declarations, and TikTok Sans with its license. React 18+ is an optional peer dependency needed only when using the React wrapper.
 
 For plain HTML without a bundler, copy **`node_modules/tiktok-style-wrapped-text`** into your public assets as **`roundtext`**. You can also clone this repository and copy **`dist/lib`**. Keep the whole folder together, including `fonts/` and its license.
 
@@ -90,7 +94,7 @@ export default function Caption() {
 }
 ```
 
-Keep the copied font assets available in your build output. [React + Tailwind](#react--tailwind) covers layout, refs, and integration status.
+The bundled font is referenced by the package and emitted by supported bundlers; no manual folder copy is needed for a Vite build. [React + Tailwind](#react--tailwind) covers layout, refs, and integration status.
 
 #### Vue 3 / Nuxt
 
