@@ -39,12 +39,12 @@ This library handles that geometry for you. Use it for short-form captions, HTML
 ### 1. Get the library
 
 ```sh
-git clone https://github.com/Amargol/tiktok-style-wrapped-text.git
+npm install tiktok-style-wrapped-text
 ```
 
-Copy the repository's **`dist/lib`** directory into your own project and name the copied directory **`roundtext`**. Keep the whole folder together, including `fonts/` and its license.
+For plain HTML without a bundler, copy **`node_modules/tiktok-style-wrapped-text`** into your public assets as **`roundtext`**. You can also clone this repository and copy **`dist/lib`**. Keep the whole folder together, including `fonts/` and its license.
 
-The project is not published on npm. The `roundtext` filenames are retained for compatibility; the HTML element is `<tiktok-text>`.
+The `roundtext` filenames are retained for compatibility; the HTML element is `<tiktok-text>`.
 
 ### 2. Import once. Use the tag.
 
@@ -64,10 +64,10 @@ Adjust the module URL to your asset location. Keep `fonts/` beside `roundtext.js
 
 #### Vite / JavaScript / TypeScript bundlers
 
-Copy the library into your source tree and import it from your browser entry point:
+Import the installed package from your browser entry point:
 
 ```js
-import './roundtext/roundtext.js';
+import 'tiktok-style-wrapped-text';
 ```
 
 Then use `<tiktok-text>` in your templates. Your bundler must emit the included font referenced by the module's relative `new URL(...)`. Alternatively, keep the whole folder in public assets and load it with a module script as above.
@@ -79,7 +79,7 @@ Use the supplied wrapper; it handles client-side registration:
 ```tsx
 'use client'; // Needed for this component in Next.js App Router.
 
-import { TikTokText } from './roundtext/ReactRoundText';
+import { TikTokText } from 'tiktok-style-wrapped-text/react';
 
 export default function Caption() {
   return (
@@ -99,7 +99,7 @@ Register the element on the client and use it in the template:
 ```vue
 <script setup>
 import { onMounted } from 'vue';
-onMounted(() => { void import('./roundtext/roundtext.js'); });
+onMounted(() => { void import('tiktok-style-wrapped-text'); });
 </script>
 
 <template>
@@ -126,7 +126,7 @@ For Nuxt, set the same predicate under `vue.compilerOptions.isCustomElement` in 
 ```svelte
 <script>
   import { onMount } from 'svelte';
-  onMount(() => { void import('./roundtext/roundtext.js'); });
+  onMount(() => { void import('tiktok-style-wrapped-text'); });
 </script>
 
 <tiktok-text size="48" color="teal">Find your<br>happy place.</tiktok-text>
@@ -138,7 +138,7 @@ Framework references: [Vue custom elements](https://vuejs.org/guide/extras/web-c
 
 Use it as a standard custom element: load the module in the browser, allow `tiktok-text` in your framework's template compiler if required, and pass the attributes below. For SSR, register it after client mount; text can render on the server, while backgrounds and outlines are added in the browser.
 
-These are integration recipes. Chrome HTML rendering has been verified; framework-specific builds still need validation in your project. No npm install is required for the HTML runtime, and there is no published npm package yet.
+These are integration recipes. Chrome HTML rendering has been verified; framework-specific builds still need validation in your project. The plain HTML runtime also works by copying the library folder without npm.
 
 ## Visual examples
 
@@ -271,7 +271,7 @@ Radius, stroke, and snap accept pixel or `em` values. Padding accepts nonnegativ
 ### Update text and capture output
 
 ```js
-import { ready } from './roundtext/roundtext.js';
+import { ready } from 'tiktok-style-wrapped-text';
 
 const caption = document.querySelector('tiktok-text');
 caption.textContent = 'A new caption\nwith two lines';
@@ -295,10 +295,10 @@ Listen directly on the element; `roundtext:render` does not bubble. Advanced con
 
 ## React + Tailwind
 
-Copy the same `dist/lib` folder into your source tree as `roundtext`, then import the wrapper:
+Install `tiktok-style-wrapped-text` and React 18+, then import the wrapper:
 
 ```tsx
-import { TikTokText } from './roundtext/ReactRoundText';
+import { TikTokText } from 'tiktok-style-wrapped-text/react';
 
 export function Caption() {
   return (
@@ -311,7 +311,7 @@ export function Caption() {
 }
 ```
 
-The wrapper is TSX source for your bundler. It registers the custom element on the client, forwards a ref exposing `refresh()`, and maps `className` to the element's class. Keep the font assets available beside the module in your bundler's output. React 18+ is required only for the wrapper; plain HTML needs no React or Tailwind. The wrapper has not yet been verified in a React runtime integration test.
+The npm wrapper includes compiled JavaScript and TypeScript declarations. The TSX source is also included for direct folder-based use. It registers the custom element on the client, forwards a ref exposing `refresh()`, and maps `className` to the element's class. Keep the font assets available beside the module in your bundler's output. React 18+ is required only for the wrapper; plain HTML needs no React or Tailwind. Package imports, TypeScript types, and server rendering have been checked with React 18 and 19; a Vite production build also verifies bundled font output. Client-side React mounting still needs browser integration testing.
 
 ## How it works
 
@@ -340,7 +340,7 @@ Use the URL printed by Vite for the playground, feature demos, and reference vie
 npm test
 ```
 
-The geometry checks require Node.js and no installed dependencies.
+Run `npm ci` and `npm run build:lib` before `npm test`. The tests cover geometry and React server rendering.
 
 </details>
 

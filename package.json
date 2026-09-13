@@ -3,11 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/geometry.test.js",
+    "test": "node --test tests/*.test.js",
     "dev": "vite",
-    "build:docs": "python3 scripts/build-docs.py"
+    "build:docs": "python3 scripts/build-docs.py",
+    "build:lib": "tsc -p tsconfig.lib.json",
+    "pack:lib": "npm run build:lib && npm pack ./dist/lib"
   },
   "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^7.0.2",
     "vite": "8.2.2"
   }
 }

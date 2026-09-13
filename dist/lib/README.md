@@ -2,6 +2,20 @@
 
 TikTok-style captions in one HTML tag: connected rounded backgrounds, transitive width snapping, color presets, and rounded glyph outlines. The original text stays in the DOM. No runtime JavaScript dependencies; the included TikTok Sans variable font is loaded automatically.
 
+## Install
+
+```sh
+npm install tiktok-style-wrapped-text
+```
+
+With a browser bundler:
+
+```js
+import 'tiktok-style-wrapped-text';
+```
+
+For plain HTML, copy `node_modules/tiktok-style-wrapped-text` into your public assets as `roundtext`. Keep `fonts/` beside `roundtext.js`, including the font license. The repository's `dist/lib` folder works the same way.
+
 ## HTML
 
 Keep the entire `roundtext` folder together and serve your page over HTTP(S).
@@ -26,14 +40,14 @@ Newlines are preserved, including indentation. Use one source line for automatic
 ## React / Tailwind
 
 ```tsx
-import { TikTokText } from './roundtext/ReactRoundText';
+import { TikTokText } from 'tiktok-style-wrapped-text/react';
 
 <TikTokText size={48} color="blue" className="max-w-md">
   {'This is\nmultiline text'}
 </TikTokText>
 ```
 
-The wrapper is TSX source for your bundler, registers the element on the client, and forwards a ref. React 18+ is optional and only required by the wrapper. The plain HTML runtime does not use React. The wrapper source has not been executed in a React integration test in this version.
+The wrapper includes compiled JavaScript and TypeScript declarations, registers the element on the client, and forwards a ref. Its TSX source is also included for direct folder-based use. React 18+ is optional and only required by the wrapper. The plain HTML runtime does not use React. Package imports, TypeScript types, and server rendering have been checked with React 18 and 19, along with a Vite production build that includes the font. Client-side React mounting still needs browser integration testing.
 
 ## Simple API
 
@@ -68,7 +82,7 @@ Use CSS for host width and layout. Put surrounding padding/borders on a wrapper.
 Radius, stroke, and snap accept pixel values or `em`. Padding accepts nonnegative CSS lengths, excluding percentages. The font is TikTok Sans with fixed optical/width axes and a calibrated weight; geometry scales with font size. Plain text uses its own calibrated weight/optical settings. Internal band overlaps and text baseline compensation are size-relative.
 
 ```js
-import { ready } from './roundtext/roundtext.js';
+import { ready } from 'tiktok-style-wrapped-text';
 await ready();
 const element = document.querySelector('tiktok-text');
 element.refresh(); // synchronous measurement; capture after this
@@ -106,4 +120,4 @@ Text remains visible without JavaScript, but its background and outlines require
 Code: MIT (LICENSE). Included font: SIL Open Font License (fonts/OFL.txt).
 Official font source: https://github.com/tiktok/TikTokSans
 Font distribution used: Google Fonts ofl/tiktoksans, downloaded 2026-09-07.
-Independent project; not affiliated with TikTok. Not published on npm.
+Independent project; not affiliated with TikTok.

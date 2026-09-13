@@ -10,11 +10,16 @@
       "types": "./roundtext.d.ts",
       "import": "./roundtext.js"
     },
-    "./react": "./ReactRoundText.tsx"
+    "./react": {
+      "types": "./ReactRoundText.d.ts",
+      "import": "./ReactRoundText.js"
+    }
   },
   "files": [
     "roundtext.js",
     "roundtext.d.ts",
+    "ReactRoundText.js",
+    "ReactRoundText.d.ts",
     "ReactRoundText.tsx",
     "README.md",
     "LICENSE",
@@ -36,5 +41,18 @@
     "type": "git",
     "url": "https://github.com/Amargol/tiktok-style-wrapped-text.git",
     "directory": "dist/lib"
+  },
+  "homepage": "https://amargol.github.io/tiktok-style-wrapped-text/",
+  "keywords": [
+    "tiktok",
+    "text",
+    "captions",
+    "web-components",
+    "react",
+    "rounded-text"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
