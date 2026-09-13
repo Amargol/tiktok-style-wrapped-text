@@ -1,0 +1,54 @@
+name: Publish to npm
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+      - name: Install dependencies
+        run: npm ci
+      - name: Build library
+        run: npm run build:lib
+      - name: Run tests
+        run: npm test
+      - name: Check whether this version is new
+        id: version
+        run: node scripts/check-npm-release.js
+      - name: Validate package contents
+        if: steps.version.outputs.publish == 'true'
+        run: npm pack ./dist/lib --dry-run
+      - name: Publish with npm trusted publishing
+        if: steps.version.outputs.publish == 'true'
+        run: npm publish ./dist/lib --access public --provenance
+      - name: Report release status
+        env:
+          PACKAGE_VERSION: ${{ steps.version.outputs.version }}
+          PUBLISHED: ${{ steps.version.outputs.publish }}
+        run: |
+          if [ "$PUBLISHED" = "true" ]; then
+            echo "Published tiktok-style-wrapped-text@$PACKAGE_VERSION to npm." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Version $PACKAGE_VERSION is already on npm. Build and tests passed; publishing skipped." >> "$GITHUB_STEP_SUMMARY"
+          fi

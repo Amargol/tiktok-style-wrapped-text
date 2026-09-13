@@ -357,6 +357,20 @@ Enable **Settings → Pages → Build and deployment → Source → GitHub Actio
 
 </details>
 
+## Automatic npm releases
+
+The [Publish to npm workflow](.github/workflows/publish.yml) runs on every push to `main`. It builds the React wrapper and runs the tests, then publishes `dist/lib` if its version is not already on npm. Existing versions are skipped; registry errors stop the release. GitHub Pages continues deploying separately.
+
+For a release, update `version` in `dist/lib/package.json` to a new stable version (for example, `0.2.1`) and push to `main`. Documentation-only edits do not create package releases. Prerelease versions are excluded from this workflow. Update the displayed documentation and download versions as part of a version change.
+
+Publishing uses npm Trusted Publishing with short-lived GitHub credentials, without an npm token secret. The package must authorize repository `Amargol/tiktok-style-wrapped-text`, workflow `publish.yml`, and direct `npm publish` before its first automated release. An npm maintainer can configure that one-time relationship with:
+
+```sh
+npm trust github tiktok-style-wrapped-text --repo Amargol/tiktok-style-wrapped-text --file publish.yml --allow-publish --yes
+```
+
+The setup command may require npm's account verification. Once configured, automated releases do not require interactive verification. The workflow can also be rerun from GitHub Actions on `main` after a failed release.
+
 ## Reference comparisons and limits
 
 Six supplied TikTok screenshots have executable recreations, original/recreation overlays, and measured differences. These reference tests are separate from the purpose-built examples above.
