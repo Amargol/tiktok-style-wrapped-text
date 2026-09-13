@@ -10,7 +10,7 @@ Connected rounded backgrounds. Smart width snapping. TikTok Sans. One HTML tag.
 
 </div>
 
-![Four caption styles: connected black background, orange outline, white hollow letters, and plain white text](docs/media/showcase.svg)
+![Real library output: black multiline wrapped text, yellow plain text, and red multiline wrapped text](docs/media/real-library-examples.jpg)
 
 
 ```html
@@ -142,7 +142,24 @@ These are integration recipes. Chrome HTML rendering has been verified; framewor
 
 ## Visual examples
 
-Purpose-built caption previews with copyable recipes. The SVG illustrations use the bundled TikTok Sans font and the library’s background/snapping geometry; browser text measurement can differ slightly. [Preview source](scripts/build-readme-art.py).
+The image above is a browser screenshot of the actual `<tiktok-text>` component with its bundled font. No separately drawn text or background geometry. [Live examples](https://amargol.github.io/tiktok-style-wrapped-text/readme-examples/) · [HTML source](dist/readme-examples/index.html).
+
+### Recreate these three examples
+
+```html
+<script type="module" src="./roundtext/roundtext.js"></script>
+
+<!-- Black background, white multiline text. -->
+<tiktok-text size="40" color="black">Take the<br>scenic route.<br>Get a little<br>lost.</tiktok-text>
+
+<!-- Yellow plain text on a dark backdrop. -->
+<div style="background: #182238; padding: 32px">
+  <tiktok-text size="40" color="yellow" variant="plain">A little<br>sunshine<br>goes a<br>long way.</tiktok-text>
+</div>
+
+<!-- Red background, white multiline text. -->
+<tiktok-text size="40" color="red">Good food.<br>Great company.<br>One more<br>bite.</tiktok-text>
+```
 
 ### Four ways to style a caption
 
@@ -168,7 +185,6 @@ Purpose-built caption previews with copyable recipes. The SVG illustrations use 
 
 ### Colors that work together
 
-![Eleven presets and a custom rose caption, each reading Find your happy place](docs/media/palette.svg)
 
 ```html
 <tiktok-text color="teal">Take the<br>scenic route.</tiktok-text>
@@ -192,11 +208,9 @@ Change `size`; the padding and geometry scale with it. Each caption has one size
 <tiktok-text size="56" color="indigo">Big<br>ideas.</tiktok-text>
 ```
 
-![Big ideas captions at 20, 28, 40, and 56 pixels](docs/media/sizes.svg)
 
 ### Near widths become one block
 
-![Snapping off and on, with a stepped teal caption showing that larger width changes remain](docs/media/snapping.svg)
 
 Snapping is on by default. Similar adjacent edges align, including chains of nearby widths; large changes still produce rounded steps.
 
