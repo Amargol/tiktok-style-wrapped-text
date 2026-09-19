@@ -8,6 +8,13 @@ Connected rounded backgrounds. Smart width snapping. TikTok Sans. One HTML tag.
 
 **Now on npm: [tiktok-style-wrapped-text](https://www.npmjs.com/package/tiktok-style-wrapped-text) · v0.2.0**
 
+<p align="center">
+  <a href="https://github.com/Amargol/tiktok-style-wrapped-text/actions/workflows/publish.yml"><img alt="build" src="https://img.shields.io/github/actions/workflow/status/Amargol/tiktok-style-wrapped-text/publish.yml?branch=main&label=build"></a>
+  <a href="https://www.npmjs.com/package/tiktok-style-wrapped-text"><img alt="npm" src="https://img.shields.io/npm/v/tiktok-style-wrapped-text?label=npm"></a>
+  <a href="https://www.npmjs.com/package/tiktok-style-wrapped-text"><img alt="downloads" src="https://img.shields.io/npm/dm/tiktok-style-wrapped-text?label=downloads"></a>
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-green"></a>
+</p>
+
 **[Quick start](#quick-start) · [Visual examples](#visual-examples) · [API](#api-reference) · [React](#react--tailwind) · [How it works](#how-it-works)**
 
 </div>
