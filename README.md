@@ -2,11 +2,9 @@
 
 # TikTok Style Wrapped Text
 
-### Make organic-looking TikTok content with HTML.
+Make organic-looking TikTok content with HTML.
 
-Connected rounded backgrounds. Smart width snapping. TikTok Sans. One HTML tag.
-
-**Now on npm: [tiktok-style-wrapped-text](https://www.npmjs.com/package/tiktok-style-wrapped-text) · v0.2.0**
+Connected rounded backgrounds · Smart width snapping · TikTok Sans · One HTML tag
 
 <p align="center">
   <a href="https://github.com/Amargol/tiktok-style-wrapped-text/actions/workflows/publish.yml"><img alt="build" src="https://img.shields.io/github/actions/workflow/status/Amargol/tiktok-style-wrapped-text/publish.yml?branch=main&label=build"></a>
