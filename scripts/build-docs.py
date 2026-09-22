@@ -7,7 +7,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
 
-with ZipFile(DIST / 'roundtext-0.2.0.zip', 'w', ZIP_DEFLATED) as archive:
+with ZipFile(DIST / 'roundtext-0.2.1.zip', 'w', ZIP_DEFLATED) as archive:
     for path in sorted((DIST / 'lib').rglob('*')):
         if path.is_file():
             archive.write(path, 'roundtext/' + path.relative_to(DIST / 'lib').as_posix())

@@ -1,6 +1,6 @@
 {
   "name": "tiktok-style-wrapped-text",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "TikTok-style captions with connected backgrounds, width snapping and glyph outlines",
   "type": "module",
   "main": "./roundtext.js",

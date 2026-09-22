@@ -1,4 +1,4 @@
-# TikTok Wrapped Text 0.2.0
+# TikTok Wrapped Text 0.2.1
 
 TikTok-style captions in one HTML tag: connected rounded backgrounds, transitive width snapping, color presets, and rounded glyph outlines. The original text stays in the DOM. No runtime JavaScript dependencies; the included TikTok Sans variable font is loaded automatically.
 
@@ -35,7 +35,7 @@ wraps</tiktok-text>
 <tiktok-text color="black" variant="plain">Plain text</tiktok-text>
 ```
 
-Newlines are preserved, including indentation. Use one source line for automatic wrapping, literal newlines or `<br>` for explicit breaks. An empty line leaves a gap. Set `textContent` to edit safely. Place the component inside a heading if heading semantics are needed.
+Newlines are preserved, including indentation. Use one source line for automatic wrapping, literal newlines or `<br>` for explicit breaks. An empty line adds vertical space inside the same connected bubble. Use separate components for separate bubbles. Set `textContent` to edit safely. Place the component inside a heading if heading semantics are needed.
 
 ## React / Tailwind
 

@@ -1,0 +1,22 @@
+name: Browser regression tests
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'fix/**']
+
+permissions:
+  contents: read
+
+jobs:
+  line-breaks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium --only-shell
+      - run: npm run test:browser

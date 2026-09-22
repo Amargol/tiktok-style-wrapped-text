@@ -7,9 +7,11 @@
     "dev": "vite",
     "build:docs": "python3 scripts/build-docs.py",
     "build:lib": "tsc -p tsconfig.lib.json",
-    "pack:lib": "npm run build:lib && npm pack ./dist/lib"
+    "pack:lib": "npm run build:lib && npm pack ./dist/lib",
+    "test:browser": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "react": "^19.3.0",

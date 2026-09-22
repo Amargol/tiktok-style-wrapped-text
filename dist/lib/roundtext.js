@@ -1,4 +1,4 @@
-/** Roundtext 0.2.0 · MIT · No dependencies. */
+/** Roundtext 0.2.1 · MIT · No dependencies. */
 
 /** Trace the exact union of axis-aligned rectangles, then round both convex and concave corners. */
 export function outline(rectangles, radius = 10) {
@@ -181,6 +181,16 @@ export class RoundText extends (globalThis.HTMLElement || class {}) {
       const joinsNext=next&&next.top-l.top<lineHeight*1.6;
       return {left:l.left-px,right:l.right+px,top:rowTop+(joinsPrevious?fontSize*.09:0),bottom:rowTop+lineHeight+py*2+(joinsNext?fontSize*.04:0)};
     });
+    // One component is one bubble, even across explicit blank lines or reduced
+    // vertical padding. Meet halfway across a gap without moving the text or
+    // widening either line; already-overlapping bands keep their exact geometry.
+    for(let i=1;i<bands.length;i++){
+      const previous=bands[i-1],current=bands[i];
+      if(current.top>previous.bottom){
+        const seam=(previous.bottom+current.top)/2;
+        previous.bottom=seam;current.top=seam;
+      }
+    }
     const radiusValue=hostCSS.getPropertyValue('--rt-radius').trim();
     const length=(s,fallback)=>{if(!s)return fallback;const n=parseFloat(s);return Number.isFinite(n)?Math.max(0,n*(s.endsWith('em')?fontSize:1)):fallback;};
     const radius=length(radiusValue,fontSize*.23);

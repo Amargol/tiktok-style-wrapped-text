@@ -242,7 +242,7 @@ Use CSS to set the available width. Text wraps automatically; use `<br>` or lite
 <tiktok-text align="right">Take the<br>scenic route.</tiktok-text>
 ```
 
-Newlines **and indentation** in the source are preserved. Keep content on one source line for automatic wrapping. Blank lines leave gaps. Put surrounding padding and borders on a wrapper, and place the component inside a heading when heading semantics are needed.
+Newlines **and indentation** in the source are preserved. Keep content on one source line for automatic wrapping. Line breaks, including blank lines, keep one connected background per component. Use separate components for separate bubbles. Put surrounding padding and borders on a wrapper, and place the component inside a heading when heading semantics are needed.
 
 ## API reference
 

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connected line breaks · TikTok Wrapped Text</title>
+<script type="module" src="../lib/roundtext.js"></script>
+<style>
+  * { box-sizing: border-box }
+  body { margin: 0; padding: 48px 24px; background: #eeeae4; color: #222; font: 16px system-ui }
+  main { max-width: 960px; margin: auto }
+  h1 { font-size: 32px; letter-spacing: -1px }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px }
+  article { background: #fff; border-radius: 18px; padding: 24px }
+  h2 { font-size: 16px; margin: 0 0 32px }
+  pre { margin-top: 32px; overflow: auto; font-size: 13px; line-height: 1.6 }
+</style>
+<main>
+<h1>Your line breaks. One bubble.</h1>
+<p>Each example is one real &lt;tiktok-text&gt; component.</p>
+<div class="grid">
+<article><h2>Literal newline</h2><tiktok-text size="36">Take the
+scenic route.</tiktok-text><pre>&lt;tiktok-text&gt;Take the
+scenic route.&lt;/tiktok-text&gt;</pre></article>
+<article><h2>HTML line break</h2><tiktok-text size="36" color="red">Make something<br>worth sharing.</tiktok-text><pre>Make something&lt;br&gt;worth sharing.</pre></article>
+<article><h2>Blank line, same bubble</h2><tiktok-text size="36">A little space
+
+for a new idea.</tiktok-text><pre>A little space\n\nfor a new idea.</pre></article>
+</div>
+</main>
+</html>
